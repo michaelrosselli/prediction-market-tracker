@@ -447,4 +447,118 @@ export default function App() {
               color: "#22D3EE", fontSize: "11px", fontWeight: 700,
               fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.08em",
               textTransform: "uppercase", cursor: loading ? "not-allowed" : "pointer",
-              opacity: loading ? 0.5 : 1, w
+              opacity: loading ? 0.5 : 1, whiteSpace: "nowrap", flexShrink: 0,
+              transition: "all 0.2s",
+            }}>
+              {loading ? "Scanning…" : "↻ Refresh Intelligence"}
+            </button>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap" }}>
+          {PLATFORMS.map(p => {
+            const isActive = selectedPlatform === p;
+            const color = PLATFORM_COLORS[p] || "#94A3B8";
+            return (
+              <button key={p} onClick={() => setSelectedPlatform(p)} style={{
+                padding: "7px 16px",
+                background: isActive ? `${color}18` : "rgba(255,255,255,0.03)",
+                border: isActive ? `1px solid ${color}50` : "1px solid rgba(255,255,255,0.07)",
+                borderRadius: "4px",
+                color: isActive ? color : "rgba(255,255,255,0.45)",
+                fontSize: "11px", fontWeight: 600,
+                fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.06em",
+                textTransform: "uppercase", cursor: "pointer",
+                transition: "all 0.15s",
+              }}>
+                {p === "All" ? `All Platforms (${CASES.length})` : `${p} (${platformCounts[p]})`}
+              </button>
+            );
+          })}
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))", gap: 16 }}>
+          {filtered.map(c => <CaseCard key={c.id} c={c} onClick={setActiveCase} />)}
+        </div>
+
+        <div style={{
+          marginTop: 72, paddingTop: 40,
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48,
+        }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+              <div style={{ height: 1, width: 20, background: "#818CF8" }} />
+              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em",
+                color: "#818CF8", fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>
+                About This Tool
+              </span>
+            </div>
+            <p style={{ margin: "0 0 12px", fontSize: "14px", color: "rgba(148,163,184,0.8)",
+              lineHeight: 1.7, fontFamily: "'Sora', sans-serif" }}>
+              This tracker monitors all active litigation between state gaming regulators and
+              CFTC-registered prediction market exchanges — the most consequential jurisdictional
+              dispute in U.S. financial regulation right now.
+            </p>
+            <p style={{ margin: "0 0 16px", fontSize: "14px", color: "rgba(148,163,184,0.8)",
+              lineHeight: 1.7, fontFamily: "'Sora', sans-serif" }}>
+              Case summaries and AI intelligence digests are refreshed automatically using
+              Claude's live web search. Click any case card for a full breakdown of parties,
+              timeline, and significance.
+            </p>
+            <p style={{ margin: 0, fontSize: "13px", color: "rgba(148,163,184,0.6)",
+              fontFamily: "'Sora', sans-serif" }}>
+              Built by{" "}
+              <a href="https://www.linkedin.com/in/michaelarosselli"
+                target="_blank" rel="noreferrer"
+                style={{ color: "#818CF8", textDecoration: "none", fontWeight: 600,
+                  borderBottom: "1px solid rgba(129,140,248,0.3)" }}>
+                Michael Rosselli
+              </a>
+              {" "}· Legal & Compliance Professional · Prediction Markets & CFTC Regulation
+            </p>
+          </div>
+
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+              <div style={{ height: 1, width: 20, background: "#22D3EE" }} />
+              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em",
+                color: "#22D3EE", fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>
+                Disclaimer
+              </span>
+            </div>
+            <p style={{ margin: "0 0 24px", fontSize: "13px", color: "rgba(100,116,139,0.8)",
+              lineHeight: 1.7, fontFamily: "'Sora', sans-serif" }}>
+              This tool is for informational purposes only. AI-generated summaries may not
+              capture every nuance of complex litigation. Always verify case status against
+              official court dockets. Nothing here constitutes legal advice.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: 10,
+              padding: "12px 16px", background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.07)", borderRadius: "4px",
+              width: "fit-content" }}>
+              <span style={{ fontSize: "18px" }}>✦</span>
+              <div>
+                <div style={{ fontSize: "10px", fontWeight: 700, color: "rgba(255,255,255,0.4)",
+                  fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.1em",
+                  textTransform: "uppercase", marginBottom: 2 }}>Intelligence Powered By</div>
+                <div style={{ fontSize: "13px", fontWeight: 700, color: "#F1F5F9",
+                  fontFamily: "'Sora', sans-serif" }}>Claude by Anthropic</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {activeCase && <Modal c={activeCase} onClose={() => setActiveCase(null)} />}
+
+      <style>{`
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        * { box-sizing: border-box; }
+        ::-webkit-scrollbar { width: 6px; background: #060D1A; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+      `}</style>
+    </div>
+  );
+}
