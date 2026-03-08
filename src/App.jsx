@@ -774,7 +774,7 @@ export default function App() {
                 LinkedIn
               </a>
               <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
-              <a href="https://github.com/michaelarosselli/prediction-market-tracker" target="_blank" rel="noreferrer"
+              <a href="https://github.com/michaelrosselli/prediction-market-tracker" target="_blank" rel="noreferrer"
                 style={{ display: "flex", alignItems: "center", gap: 6,
                   color: "rgba(148,163,184,0.6)", textDecoration: "none",
                   fontSize: "12px", fontFamily: "'IBM Plex Mono', monospace",
