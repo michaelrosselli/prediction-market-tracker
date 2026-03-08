@@ -51,12 +51,9 @@ function CaseCard({ c, onClick }) {
       background: "linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.7) 100%)",
       border: "1px solid rgba(255,255,255,0.07)",
       borderTop: `2px solid ${platColor}`,
-      borderRadius: "4px",
-      padding: "22px 24px",
-      cursor: "pointer",
-      transition: "all 0.2s ease",
-      position: "relative",
-      backdropFilter: "blur(8px)",
+      borderRadius: "4px", padding: "22px 24px",
+      cursor: "pointer", transition: "all 0.2s ease",
+      position: "relative", backdropFilter: "blur(8px)",
     }}
     onMouseEnter={e => {
       e.currentTarget.style.border = `1px solid ${platColor}40`;
@@ -85,33 +82,27 @@ function CaseCard({ c, onClick }) {
         </div>
         <StatusBadge label={c.statusLabel} />
       </div>
-
       <h3 style={{ margin: "0 0 6px", fontSize: "17px", fontWeight: 700, color: "#F1F5F9",
         fontFamily: "'Sora', sans-serif", lineHeight: 1.3 }}>
         {c.platform} v. {c.state}
       </h3>
-
       <p style={{ margin: "0 0 14px", fontSize: "12px", color: "#64748B",
         fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.02em" }}>
         {c.court}
       </p>
-
       <p style={{ margin: "0 0 16px", fontSize: "13px", color: "rgba(203,213,225,0.75)",
-        fontFamily: "'Sora', sans-serif", lineHeight: 1.6, }}>
+        fontFamily: "'Sora', sans-serif", lineHeight: 1.6 }}>
         {c.coreIssue}
       </p>
-
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 14, marginTop: 4 }}>
         <p style={{ margin: "0 0 8px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.1em",
           color: "rgba(255,255,255,0.3)", fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>
           Latest Development
         </p>
-        <p style={{ margin: 0, fontSize: "13px", color: "#CBD5E1", fontFamily: "'Sora', sans-serif",
-          lineHeight: 1.6, }}>
+        <p style={{ margin: 0, fontSize: "13px", color: "#CBD5E1", fontFamily: "'Sora', sans-serif", lineHeight: 1.6 }}>
           {c.lastDevelopment.length > 180 ? c.lastDevelopment.slice(0, 180) + "…" : c.lastDevelopment}
         </p>
       </div>
-
       {c.nextEvent && (
         <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
           <span style={{ fontSize: "10px", color: "#F59E0B", fontFamily: "'IBM Plex Mono', monospace",
@@ -121,10 +112,8 @@ function CaseCard({ c, onClick }) {
           </span>
         </div>
       )}
-
       <div style={{ marginTop: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.2)",
-          fontFamily: "'IBM Plex Mono', monospace" }}>
+        <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.2)", fontFamily: "'IBM Plex Mono', monospace" }}>
           Updated {c.lastUpdated}
         </span>
         <span style={{ fontSize: "11px", color: SIG_CONFIG[c.significance]?.color,
@@ -176,17 +165,14 @@ function Modal({ c, onClose }) {
           <button onClick={onClose} style={{ background: "none", border: "none", color: "#475569",
             cursor: "pointer", fontSize: "22px", padding: "0 4px", lineHeight: 1 }}>✕</button>
         </div>
-
         <Section title="Core Issue" color={platColor}>
           <p style={{ margin: 0, fontSize: "14px", color: "#CBD5E1", lineHeight: 1.7,
             fontFamily: "'Sora', sans-serif" }}>{c.coreIssue}</p>
         </Section>
-
         <Section title="Latest Development" color={platColor}>
           <p style={{ margin: 0, fontSize: "14px", color: "#CBD5E1", lineHeight: 1.7,
             fontFamily: "'Sora', sans-serif" }}>{c.lastDevelopment}</p>
         </Section>
-
         <Section title="Key Timeline" color={platColor}>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {c.keyDates.map((kd, i) => (
@@ -208,7 +194,6 @@ function Modal({ c, onClose }) {
             ))}
           </div>
         </Section>
-
         {c.nextEvent && (
           <Section title="Next Scheduled Event" color="#F59E0B">
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -218,7 +203,6 @@ function Modal({ c, onClose }) {
             </div>
           </Section>
         )}
-
         {c.notes && (
           <Section title="Analyst Notes" color="#A78BFA">
             <p style={{ margin: 0, fontSize: "13px", color: "#94A3B8", lineHeight: 1.7, fontStyle: "italic",
@@ -227,7 +211,6 @@ function Modal({ c, onClose }) {
             </p>
           </Section>
         )}
-
         <div style={{ marginTop: 24, padding: "12px 16px", background: "rgba(255,255,255,0.03)",
           borderRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center",
           border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -259,9 +242,7 @@ function Section({ title, color, children }) {
       {children}
     </div>
   );
-}
-
-export default function App() {
+}export default function App() {
   const [selectedPlatform, setSelectedPlatform] = useState("All");
   const [activeCase, setActiveCase] = useState(null);
   const [aiUpdate, setAiUpdate] = useState(null);
@@ -293,30 +274,23 @@ export default function App() {
     setLoading(false);
   };
 
-  useEffect(() => {
-    fetchAiUpdate();
-  }, []);
+  useEffect(() => { fetchAiUpdate(); }, []);
 
   return (
     <div style={{
-      minHeight: "100vh",
-      background: "#060D1A",
+      minHeight: "100vh", background: "#060D1A",
       backgroundImage: `
         radial-gradient(ellipse 80% 50% at 50% -10%, rgba(34,211,238,0.07) 0%, transparent 60%),
         radial-gradient(ellipse 40% 40% at 85% 20%, rgba(129,140,248,0.05) 0%, transparent 50%),
         linear-gradient(180deg, #060D1A 0%, #080F1F 100%)
       `,
-      fontFamily: "'Sora', sans-serif",
-      color: "#F1F5F9",
+      fontFamily: "'Sora', sans-serif", color: "#F1F5F9",
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
       <div style={{
         borderBottom: "1px solid rgba(255,255,255,0.06)",
-        background: "rgba(6,13,26,0.8)",
-        backdropFilter: "blur(12px)",
-        position: "sticky", top: 0, zIndex: 100,
-        padding: "0 40px",
+        background: "rgba(6,13,26,0.8)", backdropFilter: "blur(12px)",
+        position: "sticky", top: 0, zIndex: 100, padding: "0 40px",
       }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex",
           justifyContent: "space-between", alignItems: "center", height: 56 }}>
@@ -331,26 +305,21 @@ export default function App() {
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)",
-              fontFamily: "'IBM Plex Mono', monospace" }}>
+            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", fontFamily: "'IBM Plex Mono', monospace" }}>
               {CASES.length} Active Cases · {highCount} High Significance
             </span>
-            <div style={{ display: "flex", alignItems: "center", gap: 6,
-              padding: "4px 10px", borderRadius: "20px",
-              background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.2)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "4px 10px",
+              borderRadius: "20px", background: "rgba(34,211,238,0.08)", border: "1px solid rgba(34,211,238,0.2)" }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22D3EE",
-                boxShadow: "0 0 8px #22D3EE", animation: "pulse 2s infinite" }} />
-              <span style={{ fontSize: "10px", color: "#22D3EE",
-                fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, letterSpacing: "0.08em" }}>
-                LIVE
-              </span>
+                boxShadow: "0 0 8px #22D3EE" }} />
+              <span style={{ fontSize: "10px", color: "#22D3EE", fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 600, letterSpacing: "0.08em" }}>LIVE</span>
             </div>
           </div>
         </div>
       </div>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 80px" }}>
-
         <div style={{ marginBottom: 48, maxWidth: 720 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
             <div style={{ height: 1, width: 32, background: "#22D3EE" }} />
@@ -367,16 +336,14 @@ export default function App() {
               Market Jurisdiction
             </span>
           </h1>
-          <p style={{ margin: 0, fontSize: "15px", color: "rgba(148,163,184,0.8)",
-            lineHeight: 1.7, maxWidth: 600 }}>
+          <p style={{ margin: 0, fontSize: "15px", color: "rgba(148,163,184,0.8)", lineHeight: 1.7, maxWidth: 600 }}>
             Real-time tracking of all active litigation between state gaming regulators and
             CFTC-registered prediction market exchanges. The outcome of these cases will
             determine whether federal law preempts state gambling regulation nationwide.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-          gap: 12, marginBottom: 40 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginBottom: 40 }}>
           {[
             { label: "Total Active Cases", value: CASES.length, color: "#22D3EE" },
             { label: "High Significance", value: highCount, color: "#EF4444" },
@@ -384,55 +351,45 @@ export default function App() {
             { label: "Polymarket Cases", value: platformCounts.Polymarket, color: PLATFORM_COLORS.Polymarket },
             { label: "Coinbase Cases", value: platformCounts.Coinbase, color: PLATFORM_COLORS.Coinbase },
           ].map(s => (
-            <div key={s.label} style={{
-              padding: "16px 20px",
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: "4px",
-            }}>
+            <div key={s.label} style={{ padding: "16px 20px", background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.06)", borderRadius: "4px" }}>
               <div style={{ fontSize: "28px", fontWeight: 800, color: s.color, lineHeight: 1,
                 marginBottom: 6, fontFamily: "'IBM Plex Mono', monospace" }}>{s.value}</div>
-              <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.35)",
-                fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.08em",
-                textTransform: "uppercase" }}>{s.label}</div>
+              <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.35)", fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: "0.08em", textTransform: "uppercase" }}>{s.label}</div>
             </div>
           ))}
         </div>
 
-        <div style={{
-          marginBottom: 40,
-          padding: "20px 24px",
+        <div style={{ marginBottom: 40, padding: "20px 24px",
           background: "linear-gradient(135deg, rgba(34,211,238,0.05) 0%, rgba(129,140,248,0.05) 100%)",
-          border: "1px solid rgba(34,211,238,0.15)",
-          borderRadius: "4px",
-          position: "relative",
-          overflow: "hidden",
-        }}>
+          border: "1px solid rgba(34,211,238,0.15)", borderRadius: "4px",
+          position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1,
             background: "linear-gradient(90deg, transparent, #22D3EE, transparent)" }} />
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-            gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16, flexWrap: "wrap" }}>
             <div style={{ flex: 1, minWidth: 240 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                 <span style={{ fontSize: "10px", fontWeight: 700, color: "#22D3EE",
-                  fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.1em",
-                  textTransform: "uppercase" }}>⚡ AI Intelligence Digest</span>
+                  fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                  ⚡ AI Intelligence Digest
+                </span>
                 {updateTime && (
-                  <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.25)",
-                    fontFamily: "'IBM Plex Mono', monospace" }}>· Updated {updateTime}</span>
+                  <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.25)", fontFamily: "'IBM Plex Mono', monospace" }}>
+                    · Updated {updateTime}
+                  </span>
                 )}
               </div>
               {loading ? (
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <div style={{ display: "flex", gap: 4 }}>
                     {[0,1,2].map(i => (
-                      <div key={i} style={{ width: 6, height: 6, borderRadius: "50%",
-                        background: "#22D3EE", opacity: 0.6,
-                        animation: `bounce 1.2s ${i * 0.2}s infinite` }} />
+                      <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#22D3EE", opacity: 0.6 }} />
                     ))}
                   </div>
-                  <span style={{ fontSize: "13px", color: "rgba(148,163,184,0.6)",
-                    fontFamily: "'Sora', sans-serif" }}>Scanning live legal news with Claude…</span>
+                  <span style={{ fontSize: "13px", color: "rgba(148,163,184,0.6)", fontFamily: "'Sora', sans-serif" }}>
+                    Scanning live legal news with Claude…
+                  </span>
                 </div>
               ) : (
                 <p style={{ margin: 0, fontSize: "13px", color: "rgba(203,213,225,0.8)",
@@ -443,12 +400,11 @@ export default function App() {
             </div>
             <button onClick={fetchAiUpdate} disabled={loading} style={{
               padding: "10px 20px", border: "1px solid rgba(34,211,238,0.3)",
-              background: "rgba(34,211,238,0.08)", borderRadius: "4px",
-              color: "#22D3EE", fontSize: "11px", fontWeight: 700,
-              fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.08em",
-              textTransform: "uppercase", cursor: loading ? "not-allowed" : "pointer",
-              opacity: loading ? 0.5 : 1, whiteSpace: "nowrap", flexShrink: 0,
-              transition: "all 0.2s",
+              background: "rgba(34,211,238,0.08)", borderRadius: "4px", color: "#22D3EE",
+              fontSize: "11px", fontWeight: 700, fontFamily: "'IBM Plex Mono', monospace",
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.5 : 1,
+              whiteSpace: "nowrap", flexShrink: 0, transition: "all 0.2s",
             }}>
               {loading ? "Scanning…" : "↻ Refresh Intelligence"}
             </button>
@@ -464,12 +420,9 @@ export default function App() {
                 padding: "7px 16px",
                 background: isActive ? `${color}18` : "rgba(255,255,255,0.03)",
                 border: isActive ? `1px solid ${color}50` : "1px solid rgba(255,255,255,0.07)",
-                borderRadius: "4px",
-                color: isActive ? color : "rgba(255,255,255,0.45)",
-                fontSize: "11px", fontWeight: 600,
-                fontFamily: "'IBM Plex Mono', monospace", letterSpacing: "0.06em",
-                textTransform: "uppercase", cursor: "pointer",
-                transition: "all 0.15s",
+                borderRadius: "4px", color: isActive ? color : "rgba(255,255,255,0.45)",
+                fontSize: "11px", fontWeight: 600, fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: "0.06em", textTransform: "uppercase", cursor: "pointer", transition: "all 0.15s",
               }}>
                 {p === "All" ? `All Platforms (${CASES.length})` : `${p} (${platformCounts[p]})`}
               </button>
@@ -481,18 +434,13 @@ export default function App() {
           {filtered.map(c => <CaseCard key={c.id} c={c} onClick={setActiveCase} />)}
         </div>
 
-        <div style={{
-          marginTop: 72, paddingTop: 40,
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48,
-        }}>
+        <div style={{ marginTop: 72, paddingTop: 40, borderTop: "1px solid rgba(255,255,255,0.06)",
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
               <div style={{ height: 1, width: 20, background: "#818CF8" }} />
-              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em",
-                color: "#818CF8", fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>
-                About This Tool
-              </span>
+              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", color: "#818CF8",
+                fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>About This Tool</span>
             </div>
             <p style={{ margin: "0 0 12px", fontSize: "14px", color: "rgba(148,163,184,0.8)",
               lineHeight: 1.7, fontFamily: "'Sora', sans-serif" }}>
@@ -506,11 +454,9 @@ export default function App() {
               Claude's live web search. Click any case card for a full breakdown of parties,
               timeline, and significance.
             </p>
-            <p style={{ margin: 0, fontSize: "13px", color: "rgba(148,163,184,0.6)",
-              fontFamily: "'Sora', sans-serif" }}>
+            <p style={{ margin: 0, fontSize: "13px", color: "rgba(148,163,184,0.6)", fontFamily: "'Sora', sans-serif" }}>
               Built by{" "}
-              <a href="https://www.linkedin.com/in/michaelarosselli"
-                target="_blank" rel="noreferrer"
+              <a href="https://www.linkedin.com/in/michaelarosselli" target="_blank" rel="noreferrer"
                 style={{ color: "#818CF8", textDecoration: "none", fontWeight: 600,
                   borderBottom: "1px solid rgba(129,140,248,0.3)" }}>
                 Michael Rosselli
@@ -518,14 +464,11 @@ export default function App() {
               {" "}· Legal & Compliance Professional · Prediction Markets & CFTC Regulation
             </p>
           </div>
-
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
               <div style={{ height: 1, width: 20, background: "#22D3EE" }} />
-              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em",
-                color: "#22D3EE", fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>
-                Disclaimer
-              </span>
+              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", color: "#22D3EE",
+                fontFamily: "'IBM Plex Mono', monospace", textTransform: "uppercase" }}>Disclaimer</span>
             </div>
             <p style={{ margin: "0 0 24px", fontSize: "13px", color: "rgba(100,116,139,0.8)",
               lineHeight: 1.7, fontFamily: "'Sora', sans-serif" }}>
@@ -533,10 +476,9 @@ export default function App() {
               capture every nuance of complex litigation. Always verify case status against
               official court dockets. Nothing here constitutes legal advice.
             </p>
-            <div style={{ display: "flex", alignItems: "center", gap: 10,
-              padding: "12px 16px", background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.07)", borderRadius: "4px",
-              width: "fit-content" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 16px",
+              background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+              borderRadius: "4px", width: "fit-content" }}>
               <span style={{ fontSize: "18px" }}>✦</span>
               <div>
                 <div style={{ fontSize: "10px", fontWeight: 700, color: "rgba(255,255,255,0.4)",
